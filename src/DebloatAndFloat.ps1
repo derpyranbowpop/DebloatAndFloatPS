@@ -35,7 +35,7 @@ Set-Location "$workingDirOverride"
 ##### END ELEVATE TO ADMIN #####
 
 function Test-ChocolateyInstalled {
-    # Check if the 'choco.exe' executable is in the system's PATH
+    # Check if the 'choco.exe' executable is in the system's PATH 
     $chocoExe = Get-Command -Name 'choco.exe' -ErrorAction SilentlyContinue
     if ($chocoExe -eq $null) {
         Write-Host "Chocolatey is not installed. Installing Chocolatey..."
@@ -1125,9 +1125,9 @@ $BasicSS.Add_Click( {
     choco install googlechrome
     Write-Host "Installed Google Chrome"
 
-    Write-Host "Installing Fire Fox"
+    Write-Host "Installing Firefox"
     choco install firefox
-    Write-Host "Installed Fire Fox"
+    Write-Host "Installed Firefox"
     
     Write-Host "Installing Adobe Reader DC"
     choco install adobereader
@@ -1155,9 +1155,9 @@ $UnBasicSS.Add_Click( {
     choco uninstall googlechrome
     Write-Host "Uninstalled Google Chrome"
 
-    Write-Host "Uninstalling Fire Fox"
+    Write-Host "Uninstalling Firefox"
     choco uninstall firefox
-    Write-Host "Uninstalled Fire Fox"
+    Write-Host "Uninstalled Firefox"
     
     Write-Host "Uninstalling Adobe Reader DC"
     choco uninstall adobereader

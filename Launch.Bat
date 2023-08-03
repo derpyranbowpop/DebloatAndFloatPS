@@ -15,7 +15,7 @@ cd /d "%destination%"
 
 rem Check if Launch.bat exists before attempting to run it
 if exist "Launch.bat" (
-    rem Run the PowerShell script
+    rem Run the Launch script
     powershell.exe ".\Launch.bat"
 ) else (
     echo "Launch.bat" not found. Aborting script execution.
