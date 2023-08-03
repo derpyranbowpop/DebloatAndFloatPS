@@ -36,7 +36,7 @@ This uses the Installed Software List file thats created from a backup/transfer 
 
 ### Install Game Launchers 
 
-This installes Steam and Epic Games Launcher
+This installs Steam and Epic Games Launcher
 
 ## The scheduled tasks that are disabled are
 
