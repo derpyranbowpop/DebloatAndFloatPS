@@ -9,8 +9,7 @@ function Install-ChocoPackage {
         [string]$packageName
     )
 
-    # Initialize the progress counter and message
-    $progressCounter = 0
+    # Initialize message
     $progressMessage = "Installing $packageName..."
 
     # Start the installation process asynchronously
@@ -102,6 +101,7 @@ function Extract-ContentUsingHAP {
 # Database of program names and their corresponding Chocolatey package names
 $programDatabase = @{
     "Google Chrome" = "googlechrome"
+    "Firefox" = "firefox"
     "Steam" = "steam"
     "VLC media player" = "vlc"
     "Teamviewer" = "teamviewer"
