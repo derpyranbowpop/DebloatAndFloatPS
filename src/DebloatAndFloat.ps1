@@ -92,9 +92,17 @@ $global:Bloatware = @(
     "Microsoft.XboxSpeechToTextOverlay"
     "Microsoft.ZuneMusic"
     "Microsoft.ZuneVideo"
-
+    "Microsoft.MicrosoftJournal"
+    "MicrosoftCorporationII.MicrosoftFamily"
+    "C27EB4BA.DropboxOEM"
+    "MixedRealityLearning"
     #Sponsored Windows 10 AppX Apps
     #Add sponsored/featured apps to remove in the "*AppName*" format
+    "57540AMZNMobileLLC.AmazonAlexa"
+    "26720RandomSaladGamesLLC.3899848563C1F"
+    "26720RandomSaladGamesLLC.HeartsDeluxe"
+    "26720RandomSaladGamesLLC.Spades"
+    "Evernote.Evernote"
     "EclipseManager"
     "ActiproSoftwareLLC"
     "AdobeSystemsIncorporated.AdobePhotoshopExpress"
@@ -110,6 +118,18 @@ $global:Bloatware = @(
     "Royal Revolt"
     "Sway"                                              # Issue 77
     "Dolby"                                             # Issue 78
+    #Laptop Bloat
+    "AD2F1837.myHP"
+    "AD2F1837.HPQuickDrop"
+    "AD2F1837.HPInc.EnergyStar"
+    "AD2F1837.HPSystemEventUtility"
+    "AD2F1837.OMENCommandCenter"
+    "E046963F.LenovoCompanion"
+    "E046963F.LenovoVoiceWorldWide"
+    "AcerIncorporated.AcerRegistration"
+    "AcerIncorporated.QuickAccess"
+    "AcerIncorporated.UserExperienceImprovementProgramV"
+    "AcerIncorporated.AcerPurifiedVoiceConsoleR"
 
     #Optional: Typically not removed but you can if you need to for some reason
     #"Microsoft.Advertising.Xaml_10.1712.5.0_x64__8wekyb3d8bbwe"
