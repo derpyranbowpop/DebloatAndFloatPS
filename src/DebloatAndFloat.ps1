@@ -259,6 +259,15 @@ $Form.text = "Debloat And Float"
 $Form.TopMost = $false
 $Form.BackColor = [System.Drawing.ColorTranslator]::FromHtml("#252525")
 
+$PleaseWaitLabel = New-Object System.Windows.Forms.Label
+$PleaseWaitLabel.Text = "Please Wait..."
+$PleaseWaitLabel.Location = New-Object System.Drawing.Point(20, 30)
+$PleaseWaitLabel.Size = New-Object System.Drawing.Size(560, 270)
+$PleaseWaitLabel.TextAlign = [System.Drawing.ContentAlignment]::MiddleCenter
+$PleaseWaitLabel.Font = 'Microsoft Sans Serif,70'
+$PleaseWaitLabel.ForeColor = [System.Drawing.Color]::Red
+$PleaseWaitLabel.Visible = $false
+
 $Debloat = New-Object system.Windows.Forms.Label
 $Debloat.text = "Debloat Options"
 $Debloat.AutoSize = $true
@@ -422,8 +431,7 @@ $DisableDarkMode.location = New-Object System.Drawing.Point(460,260)
 $DisableDarkMode.Font = 'Microsoft Sans Serif,10'
 $DisableDarkMode.ForeColor = [System.Drawing.ColorTranslator]::FromHtml("#eeeeee")
 
-
-$Form.controls.AddRange(@($Debloat, $ITDB, $ISFile, $InsatllGames, $LongSleep,$Theme, $DisableDarkMode, $EnableDarkMode, $CustomizeBlacklists, $RemoveAllBloatware, $RemoveBlacklist, $Label1, $BasicSS, $UnBasicSS, $Label2, $Label3, $DisableTaskbarbloat, $StopEdgePDFTakeover, $DisableTelemetry, $RemoveRegkeys, $FixWhitelist, $RemoveBloatNoBlacklist))
+$Form.controls.AddRange(@($Debloat, $PleaseWaitLabel, $ITDB, $ISFile, $InsatllGames, $LongSleep,$Theme, $DisableDarkMode, $EnableDarkMode, $CustomizeBlacklists, $RemoveAllBloatware, $RemoveBlacklist, $Label1, $BasicSS, $UnBasicSS, $Label2, $Label3, $DisableTaskbarbloat, $StopEdgePDFTakeover, $DisableTelemetry, $RemoveRegkeys, $FixWhitelist, $RemoveBloatNoBlacklist))
 
 $DAFFolder = "C:\Temp\DebloatAndFloat\Logs"
 If (Test-Path $DAFFolder) {
@@ -582,6 +590,7 @@ $CustomizeBlacklists.Add_Click( {
     })
 $RemoveBlacklist.Add_Click( { 
         $ErrorActionPreference = 'silentlycontinue'
+        $PleaseWaitLabel.Visible = $true
         Function DebloatBlacklist {
             Write-Host "Requesting removal of $global:BloatwareRegex"
             Write-Host "--- This may take a while - please be patient ---"
@@ -594,9 +603,11 @@ $RemoveBlacklist.Add_Click( {
         Write-Host "Removing blacklisted Bloatware."
         DebloatBlacklist
         Write-Host "Bloatware removed!"
+        $PleaseWaitLabel.Visible = $false
     })
 $RemoveAllBloatware.Add_Click( { 
         $ErrorActionPreference = 'silentlycontinue'
+        $PleaseWaitLabel.Visible = $true
         #This function finds any AppX/AppXProvisioned package and uninstalls it, except for Freshpaint, Windows Calculator, Windows Store, and Windows Photos.
         #Also, to note - This does NOT remove essential system services/software/etc such as .NET framework installations, Cortana, Edge, etc.
 
@@ -852,10 +863,11 @@ $RemoveAllBloatware.Add_Click( {
         CheckDMWService
         CheckInstallService
         Write-Host "Finished all tasks. `n"
-  
+        $PleaseWaitLabel.Visible = $false
     } )
 $DisableTaskbarbloat.Add_Click( { 
         $ErrorActionPreference = 'silentlycontinue'
+        $PleaseWaitLabel.Visible = $true
         Write-Host "Disabling Cortana"
         $Cortana1 = "HKCU:\SOFTWARE\Microsoft\Personalization\Settings"
         $Cortana2 = "HKCU:\SOFTWARE\Microsoft\InputPersonalization"
@@ -890,6 +902,7 @@ $DisableTaskbarbloat.Add_Click( {
         taskkill /f /im explorer.exe
         Start-Process explorer.exe
         Write-Host "Taskbar Bloat Has Been Removed."
+        $PleaseWaitLabel.Visible = $false
     })
 $LongSleep.Add_Click( { 
         $ErrorActionPreference = 'silentlycontinue'
@@ -935,6 +948,7 @@ $StopEdgePDFTakeover.Add_Click( {
     })
 $DisableTelemetry.Add_Click( { 
         $ErrorActionPreference = 'silentlycontinue'
+        $PleaseWaitLabel.Visible = $true
         #Disables Windows Feedback Experience
         Write-Host "Disabling Windows Feedback Experience program"
         $Advertising = "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\AdvertisingInfo"
@@ -1076,9 +1090,11 @@ $DisableTelemetry.Add_Click( {
         Stop-Service "DiagTrack"
         Set-Service "DiagTrack" -StartupType Disabled
         Write-Host "Telemetry has been disabled!"
+        $PleaseWaitLabel.Visible = $false
     })
 $RemoveRegkeys.Add_Click( { 
         $ErrorActionPreference = 'silentlycontinue'
+        $PleaseWaitLabel.Visible = $true
         $Keys = @(
             
             New-PSDrive  HKCR -PSProvider Registry -Root HKEY_CLASSES_ROOT
@@ -1118,6 +1134,7 @@ $RemoveRegkeys.Add_Click( {
             Write-Host "Removing $Key from registry"
             Remove-Item $Key -Recurse
         }
+        $PleaseWaitLabel.Visible = $false
         Write-Host "Additional bloatware keys have been removed!"
     })
 $EnableDarkMode.Add_Click( {
@@ -1140,7 +1157,9 @@ $DisableDarkMode.Add_Click( {
 )
 $BasicSS.Add_Click( {
     if (Test-ChocolateyInstalled) {
-        Write-Host "Chocolatey is installed."
+    $PleaseWaitLabel.Visible = $true
+    Write-Host "Chocolatey is installed."
+    Write-Host "Installing Basic System Setup"
     Write-Host "Installing Google Chrome"
     choco install googlechrome
     Write-Host "Installed Google Chrome"
@@ -1159,16 +1178,20 @@ $BasicSS.Add_Click( {
     
     Write-Host "Installing Unchecky"
     choco install unchecky
+    del C:\Users\Public\Desktop\unchecky.lnk
     Write-Host "Installed Unchecky"
     
     Write-Host "Installing VLC"
     choco install vlc
     Write-Host "Installed VLC"
+    Write-Host "Installed Basic System Setup"
+    $PleaseWaitLabel.Visible = $false
 } else {
     Write-Host "Chocolatey is not installed. Please install Chocolatey before continuing."
 }
 })
 $UnBasicSS.Add_Click( {
+    $PleaseWaitLabel.Visible = $true
     if (Test-ChocolateyInstalled) {
         Write-Host "Chocolatey is installed."
     Write-Host "Uninstalling Google Chrome"
@@ -1194,11 +1217,13 @@ $UnBasicSS.Add_Click( {
     Write-Host "Uninstalling VLC"
     choco uninstall vlc
     Write-Host "Uninstalled VLC"
-} else {
+    } else {
     Write-Host "Chocolatey is not installed. Please install Chocolatey before continuing."
-}
+    }
+    $PleaseWaitLabel.Visible = $false
 })
 $ISFile.Add_Click( {
+    $PleaseWaitLabel.Visible = $true
     if (Test-ChocolateyInstalled) {
         Write-Host "Chocolatey is installed."
         Write-Host "Launching Auto Installer"
@@ -1208,18 +1233,22 @@ $ISFile.Add_Click( {
     } else {
         Write-Host "Chocolatey is not installed. Please install Chocolatey before continuing."
     }
+    $PleaseWaitLabel.Visible = $false
     })
 $ITDB.Add_Click( {
 if (Test-ChocolateyInstalled) {
         Write-Host "Chocolatey is installed."
         Write-Host "Installing Todo Backup"
+        $PleaseWaitLabel.Visible = $true
         choco install todobackup
+        $PleaseWaitLabel.Visible = $false
         Write-Host "Installed Todo Backup"
     } else {
     Write-Host "Chocolatey is not installed. Please install Chocolatey before continuing."
 }
 })
 $InsatllGames.Add_Click( {
+    $PleaseWaitLabel.Visible = $true
     if (Test-ChocolateyInstalled) {
         Write-Host "Chocolatey is installed."
         Write-Host "Installing Game Launchers"
@@ -1235,6 +1264,7 @@ $InsatllGames.Add_Click( {
     } else {
         Write-Host "Chocolatey is not installed. Please install Chocolatey before continuing."
     }
+    $PleaseWaitLabel.Visible = $false
     })
 
     [void]$Form.ShowDialog()
