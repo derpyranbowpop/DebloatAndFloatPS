@@ -6,5 +6,5 @@ rem Launch Debloat And Float
 PowerShell.exe -ExecutionPolicy Bypass -File .\DebloatAndFloat.ps1
 
 rem Create a Delete.bat file untill i can figgure out auto delete
-xcopy /Y "delete.bat" %USERPROFILE%\Desktop
+xcopy /Y "Clean-Up.bat" %USERPROFILE%\Desktop
 Exit
