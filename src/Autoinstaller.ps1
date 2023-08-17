@@ -154,6 +154,7 @@ $programDatabase = @{
 # Run the script and display output to the console in real-time
 # Create and display the file dialog box
 $openFileDialog = New-Object System.Windows.Forms.OpenFileDialog
+$openFileDialog.InitialDirectory = 'C:\Users\Public\Desktop'
 $openFileDialog.Filter = "HTML Files (*.html;*.htm)|*.html;*.htm|All Files (*.*)|*.*"
 $openFileDialog.Title = "Select an HTML file"
 
