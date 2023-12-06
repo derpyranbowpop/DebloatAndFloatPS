@@ -24,7 +24,7 @@ This script has a number of diffrent features below you can read what they do.
 
 ## Installing Programs
 
-This script has buttons to install programs the way they are downloaded and installed is with [Chocolatey](https://chocolatey.org/)
+This script has buttons to install programs the way they are downloaded and installed is with [WinGet]([https://chocolatey.org/](https://github.com/microsoft/winget-cli))
 
 ### Basic System Setup
 Basic System Setup installs the following:
