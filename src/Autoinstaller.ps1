@@ -99,7 +99,7 @@ function Extract-ContentUsingHAP {
 
             # Check if the current row contains a program name
             if (![string]::IsNullOrWhiteSpace($strongTagContent) -and $strongTagContent -notlike "*User name*") {
-                $skipProgram = $strongTagContent -match "SQL|SDK|Driver|Redistributable|Runtime|PhysX|Bonjour|Acer|Asus|Canon|Brother|Toshiba|"
+                $skipProgram = $strongTagContent -match "SQL|SDK|Driver|Redistributable|Runtime|PhysX|Bonjour|Acer|Asus|Canon|Brother|Toshiba"
                 if ($skipProgram) {
                     continue
                 }
