@@ -4,7 +4,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 # This version is now outdated, a link to the new version will be linked below.
-This version runs on PowerShell and is no longer updated, i have decided to move over to C#.
+This version runs on PowerShell and is no longer updated, i have decided to move over to C#. [Link](https://github.com/derpyranbowpop/DebloatAndFloat)
 
 ## This is a fork of [Sycnex's Windows10Debloater](https://github.com/Sycnex/Windows10Debloater)
 
