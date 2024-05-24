@@ -3,6 +3,9 @@
 [![made-with-powershell](https://img.shields.io/badge/PowerShell-1f425f?logo=Powershell)](https://microsoft.com/PowerShell)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
+# This version is now outdated, a link to the new version will be linked below.
+This version runs on PowerShell and is no longer updated, i have decided to move over to C#.
+
 ## This is a fork of [Sycnex's Windows10Debloater](https://github.com/Sycnex/Windows10Debloater)
 
 Debloat And Float is a Script/Utility/Application to debloat Windows 10 and 11, to remove Windows pre-installed unnecessary applications, stop some telemetry functions, disable unnecessary scheduled tasks, and more...
